@@ -17,7 +17,11 @@ function writeLog(operation, preResult, finalResult)
         finalResult: finalResult
     };
     logEntries.push(entry);
-    console.log(logEntries[countLog]);
+    console.log(`#${countLog}`);
+    for(key in logEntries[countLog])
+    {
+        console.log(`${key}: ${logEntries[countLog][key]}`)
+    }
     countLog++;
 }
 
@@ -47,26 +51,11 @@ function calculationResult(calculationType)
     writeDescription(calculationType, initialResult, enterNumber);
 }
 
-function add(){
-    calculationResult("+")
-}
 
-function subtract(){
-    calculationResult("-")
-}
-
-function multiply(){
-    calculationResult("*")
-}
-
-function divide(){
-    calculationResult("/")
-}
-
-addBtn.addEventListener("click", add);
-subtractBtn.addEventListener("click", subtract);
-multiplyBtn.addEventListener("click", multiply);
-divideBtn.addEventListener("click", divide);
+addBtn.addEventListener("click", calculationResult.bind(this,'+'));
+subtractBtn.addEventListener("click", calculationResult.bind(this,'-'));
+multiplyBtn.addEventListener("click", calculationResult.bind(this,'*'));
+divideBtn.addEventListener("click", calculationResult.bind(this,'/'));
 
 
 
